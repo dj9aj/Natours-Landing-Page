@@ -8,6 +8,7 @@ The app is deployed and available to use via the link below -
 
 I created a simple Express server so that this app can be deployed to Heroku. server.js is simply telling Heroku to use index.html
 
+```
 const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 8080;
@@ -24,5 +25,5 @@ app.get('*', (req, res) => {
 app.listen(port);
 
 console.log('server started');
-
+```
 
