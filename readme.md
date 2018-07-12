@@ -6,6 +6,8 @@ This app was built using pure CSS, including many modern and up to date features
 
 The app is deployed and available to use via the link below - 
 
+https://pure-lowlands-81406.herokuapp.com/
+
 I created a simple Express server so that this app can be deployed to Heroku. server.js is simply telling Heroku to use index.html
 
 ```
