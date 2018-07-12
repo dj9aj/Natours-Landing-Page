@@ -1,0 +1,113 @@
+.btn {
+    /* Sudo class is a special state of a selector. A link is a special state of a selector when it is an anchor element */
+    &,
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        /* An an <a> tag is naturally an inline element, so change to inline-block to allow padding, left/right etc */
+        display: inline-block;
+        border-radius: 10rem;
+        /* The hover and active animations below will be animated in relation to the initial state. */
+        transition: all .2s;
+        position: relative;
+        font-size: $default-font-size;
+
+        // Change for the <button> element
+        border: none;
+        cursor: pointer;
+        
+    }
+
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+        /* When user hovers over button, we want styles applied to the after pseudo element */
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active,
+    &:focus {
+        /* Always related to original state, not the hover state */
+        transform: translateY(0.1rem);
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+        outline: none;
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white; 
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary; 
+        }
+    }
+
+    &::after {
+        /* In order for an after pseudo element to appear on the page, need to specify content property. Can be empty like below */
+        content: "";
+        /* Also need to specify display property. Set to inline block as btn is also inline block */
+        display: inline-block;
+        /* Set height and width to 100% as the after pseudo element is treated like a child of the button. We want it to be same size as the button */
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        /* Set to absolute to position behind button element. */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* Put pseudo element behind the button */
+        z-index: -1;
+        transition: all .4s;
+    }
+
+    &--animated {
+        /* Animation name, animation duration, animation-timing-function, animation delay */
+        animation: moveInBottom .5s ease-out .75s;
+        /* Automatically apply the styles of the 0% before the animation starts */
+        animation-fill-mode: backwards;
+    }
+
+}
+
+
+.btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        // Set to inline-block so that margin, padding etc can be applied. <a> tags by default can only have horizontal padding and margin applied 
+        display: inline-block;
+        text-decoration: none;   
+        border-bottom: 1px solid $color-primary;
+        // Can use pixels if amounts are very small
+        padding: 3px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.15);
+        transform: translateY(0);
+    }
+}

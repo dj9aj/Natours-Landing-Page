@@ -1,0 +1,43 @@
+/* Use universal selector to perform basic reset. By default browsers add padding and margin, so this resets that. Also select all after and before pseudo elements */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /* All elements inherit the box sizing property from body */
+    box-sizing: inherit;
+}
+
+html {
+    // This defines what 1rem is
+    font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+ 
+    @include respond(tab-land) { //width < 1200?
+        font-size: 56.25%; // 1 rem - 9px, 9/16 = 56.25
+    }
+
+    @include respond(tab-port) { //width < 900?
+        font-size: 50%; // 1 rem = 4.8px
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%; // 1 rem = 12px, 12/16 = 75
+    }
+}
+
+
+body {
+    /* Change box model so that borders and padding are not added to total width or height. All children of this will inherit this property. */
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
+    
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}
